@@ -6,15 +6,15 @@ services:
     image: postgres
     restart: unless-stopped
     environment:
-      POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: graphql-demo
     volumes:
-      - source: db-data
+      - type: volume
+        source: db-data
         target: /var/lib/postgresql/data
+      - ./db_scripts:/docker-entrypoint-initdb.d
     ports:
       - 5432:5432
-  
+
   adminer:
     image: adminer
     restart: always
@@ -22,4 +22,4 @@ services:
       - 8080:8080
 
 volumes:
-  db-data:
+  db-data: null
