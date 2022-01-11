@@ -11,7 +11,7 @@ services:
       - type: volume
         source: db-data
         target: /var/lib/postgresql/data
-      - ./db_scripts:/docker-entrypoint-initdb.d
+      - ./scripts/db:/docker-entrypoint-initdb.d
     ports:
       - 5432:5432
 
